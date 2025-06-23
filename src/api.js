@@ -73,7 +73,7 @@ api.interceptors.response.use(
     // kick off refresh
     return new Promise((resolve, reject) => {
       api
-        .post('/api/v1/auth/refresh')
+        .post('api/v1/auth/refresh')
         .then(({ data }) => {
           const newToken = data.token;
           // persist new token
