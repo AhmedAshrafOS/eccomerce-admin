@@ -97,15 +97,15 @@ const Add = ({token}) => {
 
     <div className='w-full'>
       <p className='mb-2'>Product name</p>
-      <input onChange={(e)=> setName(e.target.value)} value={name} className='w-full max-w-[500px] px-3 py-2 ' type="text" placeholder='Type here' required/>
+      <input  maxLength={255} onChange={(e)=> setName(e.target.value)} value={name}  className='w-full max-w-[500px] px-3 py-2 ' type="text" placeholder='Type here' required/>
     </div>
     <div className='w-full'>
       <p className='mb-2'>Product features</p>
       <textarea onChange={(e)=> setFeatures(e.target.value)} value={features} className='w-full max-w-[500px] px-3 py-2 ' type="text" placeholder='Write features here' required/>
     </div>
-        <div className='w-full'>
+    <div className='w-full'>
       <p className='mb-2'>Product specs</p>
-      <textarea onChange={(e)=> setSpecs(e.target.value)} value={specs} className='w-full max-w-[500px] px-3 py-2 ' type="text" placeholder='Write specs here' required/>
+      <textarea  maxLength={255} onChange={(e)=> setSpecs(e.target.value)} value={specs} className='w-full max-w-[500px] px-3 py-2 ' type="text" placeholder='Write specs here' required/>
     </div>
     <div className='flex flex-col sm:flex-row gap-2 w-full sm:gap-8'>
 
