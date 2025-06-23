@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 // 1) create an axios instance
 const api = axios.create({
-  baseURL: 'https://shoptronix-7d09f5a89831.herokuapp.com/ecommerce-service/api/v1',
+  baseURL: 'https://shoptronix-7d09f5a89831.herokuapp.com/ecommerce-service/',
   withCredentials: true,
 });
 
@@ -35,6 +35,11 @@ api.interceptors.response.use(
     const { response, config } = err;
     const originalRequest = config;
     // if no response / not HTTP or not 401, just bail
+    if(response.status === 404){
+        return Promise.reject(err);
+
+    }
+
     if (!response || (response.status !== 401 && response.status !== 403)) {
       return Promise.reject(err);
     }
@@ -68,7 +73,7 @@ api.interceptors.response.use(
     // kick off refresh
     return new Promise((resolve, reject) => {
       api
-        .post('/auth/refresh')
+        .post('/api/v1/auth/refresh')
         .then(({ data }) => {
           const newToken = data.token;
           // persist new token
