@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
-export const backendUrl = "https://shoptronix-7d09f5a89831.herokuapp.com/ecommerce-service/"; // Update this to your backend URL
+export const backendUrl = "https://phoenix-ecommerce-e4dcd668b54f.herokuapp.com/ecommerce-service/"; 
 console.log("Backend URL:", backendUrl);
 export const currency = '$';
 
