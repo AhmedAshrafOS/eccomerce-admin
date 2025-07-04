@@ -155,7 +155,7 @@ const Add = ({token}) => {
       </div>
     </div>
 
-      <div className='w-full text-end mt-8'>
+
         <button
           type="submit"
           disabled={isSubmitting}
@@ -163,7 +163,7 @@ const Add = ({token}) => {
         >
           ADD
         </button>
-      </div>
+    <p className='text-xs text-gray-500'>Note: You can add up to 4 images. The first image will be the main image.</p>
     </form>
   )
 }
