@@ -18,6 +18,7 @@ const Add = ({token}) => {
   const [stockQuantity, setStockQuantity] = useState("");
   const [category, setCategory] = useState("Tablets")
   const [brand, setBrand] = useState("Apple")
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const categoryFilters = {
         Tablets: ['Apple', 'Samsung', 'Xiaomi', 'Oppo'],
@@ -49,12 +50,22 @@ const Add = ({token}) => {
         formData.append("imagesUrls", image);
       });
       
-      const response = await api.post(
+
+      const registerPromise =  api.post(
         `${backendUrl}api/v1/products`,
         formData
       );
+          toast.promise(
+            registerPromise,
+            {
+              pending: 'Adding Product...',
+              success: 'Product added successfully',
+            }
+          );
+        setIsSubmitting(true)
+
+      const response = await registerPromise 
       if(response.status === 201){
-        toast.success("Product added successfully")
         setName('')
         setFeatures('')
         setSpecs('')
@@ -73,6 +84,7 @@ const Add = ({token}) => {
       console.log(error);
       toast.error(error.message)
     }
+    setIsSubmitting(false)
   }
   return (
     <form onSubmit={onSubmitHandler} className='flex flex-col w-full items-start gap-3 mb-[5vh]' action="">
@@ -143,9 +155,15 @@ const Add = ({token}) => {
       </div>
     </div>
 
-
-    <button className='w-28 py-3 mt-4 bg-black text-white over'>ADD</button>
-
+      <div className='w-full text-end mt-8'>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="text-sm my-8 px-8 py-3 bg-black text-white hover:bg-red-600 transition disabled:bg-gray-500"
+        >
+          ADD
+        </button>
+      </div>
     </form>
   )
 }
